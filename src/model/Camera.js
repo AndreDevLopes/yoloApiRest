@@ -4,7 +4,7 @@ class Camera extends Model {
   static init(sequelize) {
     super.init(
       {
-        nome: DataTypes.STRING,
+        ip: DataTypes.INTEGER,
         quantidade: DataTypes.INTEGER,
 
       },

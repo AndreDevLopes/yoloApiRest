@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3001;
 const Camera = require("./routes/index");
-
+require('./database/index');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/camera", Camera);
