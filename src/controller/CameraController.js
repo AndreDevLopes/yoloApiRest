@@ -1,24 +1,63 @@
 
 const Camera = require('../model/Camera');
+const isEmpty = require('../util/isEmpty');
+const API_URL = process.env.API_URL || "http://localhost:3001";
 module.exports ={
     async store(req,res){
+
+          //const obj =  isEmpty(req.body);
+          
+          console.log('file',req.file);
+          console.log('data',req.body);
+         /* if(obj){
+              return res.json({
+                  erro:true,
+                 messagem:"operação falhou objeto vazio"
+              })
+          }*/
+
+         
+
             const {
                 ip,
-                quantidade,
+                quantity,
             }= req.body;
+
+            if( req.file != undefined){
+                const file_name = req.file.originalname;
+                const size = req.file.size;
+                const key = req.file.filename;
+                const url = `${API_URL}/file/${key}`;
+            
+                const camera = await Camera.findOne({where:{ip:ip}});
+                if(camera){
+                        
+                    const newCamera = await Camera.update({ip,quantity,file_name,url,size},{where:{id:camera.id}});
+                    return res.json({
+                        erro: false,
+                        messagem: "operação realizada com sucesso",
+                    });
+                }else{
+                    const newCamera = await Camera.create({ip,quantity,file_name,url,size});
+                    return res.json(newCamera);
+                }
+            }else{
+                
             
             const camera = await Camera.findOne({where:{ip:ip}});
-            if(camera){
-                    
-                const newCamera = await Camera.update({ip,quantidade},{where:{id:camera.id}});
-                return res.json({
-                    erro: false,
-                    messagem: "operação realizada com sucesso",
-                });
-            }else{
-                const newCamera = await Camera.create({ip,quantidade});
-                return res.json(newCamera);
+                if(camera){
+                        
+                    const newCamera = await Camera.update({ip,quantity},{where:{id:camera.id}});
+                    return res.json({
+                        erro: false,
+                        messagem: "operação realizada com sucesso",
+                    });
+                }else{
+                    const newCamera = await Camera.create({ip,quantity});
+                    return res.json(newCamera);
+                }
             }
+            
        
             
     },

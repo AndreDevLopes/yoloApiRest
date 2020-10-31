@@ -5,7 +5,10 @@ class Camera extends Model {
     super.init(
       {
         ip: DataTypes.INTEGER,
-        quantidade: DataTypes.INTEGER,
+        quantity: DataTypes.INTEGER,
+        file_name: DataTypes.STRING,
+        size: DataTypes.INTEGER,
+        url:DataTypes.STRING
 
       },
       {

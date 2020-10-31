@@ -12,8 +12,17 @@ module.exports = {
       ip:{
         type: Sequelize.INTEGER,
       },
-      quantidade:{
+      quantity:{
         type:Sequelize.INTEGER
+      },
+      file_name:{
+        type:Sequelize.STRING
+      },
+      size:{
+        type:Sequelize.INTEGER
+      },
+      url:{
+        type: Sequelize.STRING
       },
       created_at: {
         type: Sequelize.DATE,
