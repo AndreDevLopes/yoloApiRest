@@ -1,4 +1,3 @@
-
 const Camera = require('../model/Camera');
 const isEmpty = require('../util/isEmpty');
 const API_URL = process.env.API_URL || "http://localhost:3001";
@@ -23,7 +22,7 @@ module.exports ={
                 quantity,
             }= req.body;
 
-            if( req.file != undefined){
+            
                 const file_name = req.file.originalname;
                 const size = req.file.size;
                 const key = req.file.filename;
@@ -41,24 +40,9 @@ module.exports ={
                     const newCamera = await Camera.create({ip,quantity,file_name,url,size});
                     return res.json(newCamera);
                 }
-            }else{
-                
-            
-            const camera = await Camera.findOne({where:{ip:ip}});
-                if(camera){
-                        
-                    const newCamera = await Camera.update({ip,quantity},{where:{id:camera.id}});
-                    return res.json({
-                        erro: false,
-                        messagem: "operação realizada com sucesso",
-                    });
-                }else{
-                    const newCamera = await Camera.create({ip,quantity});
-                    return res.json(newCamera);
-                }
-            }
-            
-       
+           
+          return res.send();
+                 
             
     },
     async list(req,res){
