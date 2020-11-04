@@ -10,24 +10,17 @@
     timestamps: true,
     underscored: true,
   },
-}
+}*/
 
 module.exports={
   dialect: "postgres",
-  port: 5432,
-  host: process.env.HOST ,
+  url:process.env.DATABASE_URL,
   schema: "public",
-  database: process.env.DATABASE ,
-  username:process.env.USER ,
-  password: process.env.PASSWORD ,
+ 
   define: {
     timestamps: true,
     underscored: true,
   },
 }
-*/
-module.exports={
-  "production": {
-  "use_env_variable":process.env. DATABASE_URL
-}
-}
+
+
