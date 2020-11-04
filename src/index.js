@@ -27,5 +27,5 @@ dotenv.config();
 
 app.listen(PORT, () =>{
     console.log(`serve run port ${PORT}`);
-    console.log(process.env.HOST ,process.env.DATABASE , process.env.PASSWORD,process.env.DBUSER );
+    
 })

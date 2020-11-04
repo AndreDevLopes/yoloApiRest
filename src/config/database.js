@@ -10,7 +10,8 @@
     timestamps: true,
     underscored: true,
   },
-}*/
+}
+*/
 module.exports={
   dialect: "postgres",
   port: 5432,
